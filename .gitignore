@@ -3040,3 +3040,4 @@ node_modules/yallist/README.md
 node_modules/yallist/yallist.js
 package-lock.json
 package.json
+.env
