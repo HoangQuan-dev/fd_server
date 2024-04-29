@@ -23,8 +23,8 @@ router.get('/:id', async (req, res) => {
 // POST: /products/add
 router.post('/add', async (req, res) => {
     try {
-        const product = await productService.createProduct(
-            req.body.name,
+        const product = await productService.createProduct(            
+            req.body.name,            
             req.body.description,
             req.body.image,
             req.body.quantity,
@@ -33,7 +33,7 @@ router.post('/add', async (req, res) => {
             req.body.food_type,
             req.body.status
         );
-        res.send(product.id);
+        res.send(product);
     } catch (error) {
         console.error('Error: ' + error);
         res.status(500).send('error');

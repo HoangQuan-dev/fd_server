@@ -1,6 +1,6 @@
 const Product = require('../../models/products.model');
 
-const msg = 'success';
+const msg = 'Added success: ';
 
 async function getAllProducts() {
     const product = await Product.find();
@@ -16,10 +16,9 @@ async function getProductById(id) {
 async function createProduct(name, description, image, quantity, price, size, food_type, status) {
     const product = new Product({
         name, description, image, quantity, price, size, food_type, status
-    })
-
+    });
     await product.save();
-    return msg;
+    return msg + product._id;
 }
 
 async function updateProduct(id, name, description, image, quantity, price, size, food_type, status) {
