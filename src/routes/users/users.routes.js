@@ -25,10 +25,14 @@ router.post('/add', async (req, res) => {
     try {
         const user = await userService.createUser(
             req.body.name,
+            req.body.gender,
             req.body.email,
-            req.body.password,
             req.body.phone,
-            req.body.address
+            req.body.password,
+            req.body.address,
+            req.body.avatar,
+            Date.now(),
+            true,
         );
         res.send(user.id);
     } catch (error) {
@@ -43,10 +47,12 @@ router.put('/update/:id', async (req, res) => {
         const user = await userService.updateUser(
             req.params.id,
             req.body.name,
+            req.body.gender,
             req.body.email,
-            req.body.password,
             req.body.phone,
-            req.body.address
+            req.body.password,
+            req.body.address,
+            req.body.avatar,
         );
         res.send(user.id);
     } catch (error) {

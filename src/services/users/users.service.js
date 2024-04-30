@@ -18,31 +18,35 @@ async function hashPassword(password) {
     return hashedPassword;
 }
 
-async function createUser(name, avatar, email, password, phone, address) {
+async function createUser(name, gender, email, phone, password, address, avatar) {
     const hashedPassword = await hashPassword(password);
 
     const user = new User({
         name,
+        gender,
         email,
-        password: hashedPassword,
         phone,
+        password: hashedPassword,
         address,
+        avatar
     });
 
     await user.save();
     return user;
 }
 
-async function updateUser(id, name, email, password, phone, address) {
+async function updateUser(id, name, gender, email, phone, password, address, avatar) {
     const user = await User.findById(id);
     const hashedPassword = await hashPassword(password);
 
     user.name = name;
+    user.gender = gender;
     user.email = email;
-    user.password = hashedPassword;
     user.phone = phone;
+    user.password = hashedPassword;
     user.address = address;
-
+    user.avatar = avatar;
+    
     await user.save();
     return user;
 }
