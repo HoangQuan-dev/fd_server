@@ -3,7 +3,7 @@ const { default: mongoose } = require("mongoose");
 const Categories = mongoose.model('categories', {
     _id: String,
     name: String,
-    url: String,
+    image: String,
 });
 
 module.exports = Categories;
