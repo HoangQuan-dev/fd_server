@@ -26,6 +26,7 @@ router.post('/add', async (req, res) => {
         const user = await userService.createUser(
             req.body.name,
             req.body.gender,
+            req.body.birthDay,
             req.body.email,
             req.body.phone,
             req.body.password,
@@ -48,6 +49,7 @@ router.put('/update/:id', async (req, res) => {
             req.params.id,
             req.body.name,
             req.body.gender,
+            req.body.birthDay,
             req.body.email,
             req.body.phone,
             req.body.password,
