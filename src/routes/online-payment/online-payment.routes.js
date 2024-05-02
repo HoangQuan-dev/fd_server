@@ -23,7 +23,7 @@ function sortObject(obj) {
 var tmnCode = "QTS6HW0O";
 var secretKey = "OGDLMTAHZIUNONLSMRLPXGWAZEEYIBTQ";
 var vnpUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-var returnUrl = "http://localhost:3500/api/v1/payment/vnpay_return";
+var returnUrl = "https://fd-server-rjrz.onrender.com/api/v1/payment/vnpay_return";
 
 router.post('/create_payment_url', function (req, res, next) {
     var ipAddr = req.headers['x-forwarded-for'] ||
