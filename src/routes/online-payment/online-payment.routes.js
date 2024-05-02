@@ -23,7 +23,7 @@ function sortObject(obj) {
 var tmnCode = "QTS6HW0O";
 var secretKey = "OGDLMTAHZIUNONLSMRLPXGWAZEEYIBTQ";
 var vnpUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-var returnUrl = "https://fd-server-rjrz.onrender.com/api/v1/payment/vnpay_return";
+var returnUrl = "http://localhost:3500/api/v1/payment/vnpay_return";
 
 router.post('/create_payment_url', function (req, res, next) {
     var ipAddr = req.headers['x-forwarded-for'] ||
@@ -71,7 +71,7 @@ router.post('/create_payment_url', function (req, res, next) {
     vnp_Params['vnp_SecureHash'] = signed;
     vnpUrl += '?' + querystring.stringify(vnp_Params, { encode: false });
     console.log('vnpUrl', vnpUrl);
-    res.redirect(vnpUrl)
+    res.send(vnpUrl);
 });
  
 router.get('/vnpay_return', function (req, res, next) {
