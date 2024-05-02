@@ -22,7 +22,6 @@ function sortObject(obj) {
 
 var tmnCode = "QTS6HW0O";
 var secretKey = "OGDLMTAHZIUNONLSMRLPXGWAZEEYIBTQ";
-var vnpUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 var returnUrl = "https://fd-server-rjrz.onrender.com/api/v1/payment/vnpay_return";
 
 router.post('/create_payment_url', function (req, res, next) {
@@ -69,6 +68,7 @@ router.post('/create_payment_url', function (req, res, next) {
     let hmac = crypto.createHmac("sha512", secretKey);
     let signed = hmac.update(new Buffer.from(signData, 'utf-8')).digest("hex"); 
     vnp_Params['vnp_SecureHash'] = signed;
+    let vnpUrl = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
     vnpUrl += '?' + querystring.stringify(vnp_Params, { encode: false });
     console.log('vnpUrl', vnpUrl);
     res.send(vnpUrl);
