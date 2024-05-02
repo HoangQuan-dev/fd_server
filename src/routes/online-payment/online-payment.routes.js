@@ -23,7 +23,7 @@ function sortObject(obj) {
 var tmnCode = "QTS6HW0O";
 var secretKey = "OGDLMTAHZIUNONLSMRLPXGWAZEEYIBTQ";
 var vnpUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-var returnUrl = "http://localhost:3500/api/v1/payment/vnpay_return";
+var returnUrl = "https://fd-server-rjrz.onrender.com/api/v1/payment/vnpay_return";
 
 router.post('/create_payment_url', function (req, res, next) {
     var ipAddr = req.headers['x-forwarded-for'] ||
@@ -71,6 +71,7 @@ router.post('/create_payment_url', function (req, res, next) {
     vnp_Params['vnp_SecureHash'] = signed;
     vnpUrl += '?' + querystring.stringify(vnp_Params, { encode: false });
     console.log('vnpUrl', vnpUrl);
+    res.redirect(vnpUrl)
 });
  
 router.get('/vnpay_return', function (req, res, next) {
@@ -91,9 +92,9 @@ router.get('/vnpay_return', function (req, res, next) {
     if(secureHash === signed){
         //Kiem tra xem du lieu trong db co hop le hay khong va thong bao ket qua
 
-        res.render('success', {code: vnp_Params['vnp_ResponseCode']})
+        res.send(`success, code: ${vnp_Params['vnp_ResponseCode']}`);
     } else{
-        res.render('success', {code: '97'})
+        res.send('success, code: 97');
     }
 });
 
