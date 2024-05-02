@@ -98,4 +98,13 @@ router.get('/vnpay_return', function (req, res, next) {
     }
 });
 
+router.get('/payment-success', (req, res) => {
+    const data = {
+      title: 'Thanh toán thành công',
+      message: 'Đơn hàng của bạn đã được thanh toán thành công. Hãy quay về ứng dụng và tiếp tục mua sắm nhé!'
+    };
+  
+    res.render('payment-success', data);
+});
+
 module.exports = router;

@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3500;
 const api = '/api/v1';
+app.set('view engine', 'ejs');
 
 // Import routes
 const CategoriesRouter = require('../src/routes/categories/categories.routes');
