@@ -4,7 +4,7 @@ const favoriteService = require('../../services/favorite/favorite.service');
 
 router.get('/:userId', async (req, res) => {
     try {
-        const favorites = await favoriteService.findListFavoriteByUserId(req.params.userId);
+        const favorites = await favoriteService.getListFavoriteByUserId(req.params.userId);
         res.json(favorites);
     } catch (error) {
         console.error('Error: ' + error);
@@ -15,8 +15,8 @@ router.get('/:userId', async (req, res) => {
 router.post('/add', async (req, res) => {
     try {
         const message = await favoriteService.addToFavorite(
-            req.body.userId,
-            req.body.product
+            req.body.userId
+            // req.body.product
         );
         res.send(message);
     } catch (error) {

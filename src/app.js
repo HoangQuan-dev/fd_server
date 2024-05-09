@@ -16,7 +16,6 @@ const AuthenticationRouter = require('../src/routes/authentication/login');
 const PaymentRouter = require('../src/routes/online-payment/online-payment.routes');
 const FavoriteRouter = require('../src/routes/favorite/favorite.routes');
 
-
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
