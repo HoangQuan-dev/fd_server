@@ -3,6 +3,7 @@ const router = express.Router();
 const querystring = require('qs');
 const crypto = require("crypto");     
 const moment = require('moment');
+const Order = require('../../models/order.model');
 
 function sortObject(obj) {
 	let sorted = {};
@@ -24,7 +25,7 @@ var tmnCode = "QTS6HW0O";
 var secretKey = "OGDLMTAHZIUNONLSMRLPXGWAZEEYIBTQ";
 var returnUrl = "https://fd-server-rjrz.onrender.com/api/v1/payment/payment-success";
 
-router.post('/create_payment_url', function (req, res, next) {
+router.post('/create_payment_url', async function (req, res, next) {
     var ipAddr = req.headers['x-forwarded-for'] ||
         req.connection.remoteAddress ||
         req.socket.remoteAddress ||
@@ -71,6 +72,23 @@ router.post('/create_payment_url', function (req, res, next) {
     let vnpUrl = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
     vnpUrl += '?' + querystring.stringify(vnp_Params, { encode: false });
     console.log('vnpUrl', vnpUrl);
+
+    const order = new Order({
+        orderId: orderId,
+        amount: amount,
+        orderInfo: orderInfo,
+        createDate: createDate,
+        bankCode: bankCode
+    });
+
+    try {
+        await order.save();
+        console.log('Order saved successfully');
+    } catch (error) {
+        console.error('Error saving order: ', error);
+        res.status(500).send('Error saving order');
+    }
+
     res.send(vnpUrl);
 });
  
