@@ -35,7 +35,7 @@ router.post('/add', async (req, res) => {
             Date.now(),
             true,
         );
-        res.send(user.id);
+        res.send(user);
     } catch (error) {
         console.error('Error: ' + error);
         res.status(500).send('error');
