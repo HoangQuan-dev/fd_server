@@ -15,7 +15,7 @@ router.get('/:userId', async (req, res) => {
 router.post('/add', async (req, res) => {
     try {
         const message = await favoriteService.addToFavorite(
-            req.body.userId
+            req.body.userId,
             req.body.product
         );
         res.send(message);
