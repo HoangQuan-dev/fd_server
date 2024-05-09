@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const favoriteService = require('./favorite.service');
+const favoriteService = require('../../services/favorite/favorite.service');
 
 router.get('/:userId', async (req, res) => {
     try {
