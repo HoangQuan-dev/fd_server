@@ -14,6 +14,8 @@ const UsersRouter = require('../src/routes/users/users.routes');
 const ProductsRouter = require('../src/routes/products/products.routes');
 const AuthenticationRouter = require('../src/routes/authentication/login');
 const PaymentRouter = require('../src/routes/online-payment/online-payment.routes');
+const FavoriteRouter = require('../src/routes/favorite/favorite.routes');
+
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,6 +27,7 @@ app.use(`${api}/categories`, CategoriesRouter);
 app.use(`${api}/products`, ProductsRouter);
 app.use(`${api}/users`, UsersRouter);
 app.use(`${api}/payment`, PaymentRouter);
+app.use(`${api}/favorite`, FavoriteRouter);
 app.use(`${api}/`, AuthenticationRouter);
 
 app.listen(port, () => {

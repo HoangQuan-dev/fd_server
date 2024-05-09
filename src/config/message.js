@@ -1,5 +1,5 @@
 class SystemMessage {
-    static SUCCESS = 'Operation completed successfully.';
-    static FAILED = 'Operation failed.';
+    static SUCCESS = 'success';
+    static FAILED = 'failed';
     // Add more messages as needed
 }
