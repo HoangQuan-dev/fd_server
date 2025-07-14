@@ -21,9 +21,10 @@ function sortObject(obj) {
     return sorted;
 }
 
-var tmnCode = "QTS6HW0O";
-var secretKey = "OGDLMTAHZIUNONLSMRLPXGWAZEEYIBTQ";
-var returnUrl = "https://fd-server-rjrz.onrender.com/api/v1/payment/payment-success";
+const tmnCode = process.env.VNPAY_TMN_CODE;
+const secretKey = process.env.VNPAY_HASH_SECRET;
+const returnUrl = process.env.VNPAY_RETURN_URL;
+const vnpBaseUrl = process.env.VNPAY_URL;
 
 router.post('/create_payment_url', async function (req, res, next) {
     var ipAddr = req.headers['x-forwarded-for'] ||
@@ -69,7 +70,7 @@ router.post('/create_payment_url', async function (req, res, next) {
     let hmac = crypto.createHmac("sha512", secretKey);
     let signed = hmac.update(new Buffer.from(signData, 'utf-8')).digest("hex"); 
     vnp_Params['vnp_SecureHash'] = signed;
-    let vnpUrl = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
+    let vnpUrl = vnpBaseUrl;
     vnpUrl += '?' + querystring.stringify(vnp_Params, { encode: false });
     console.log('vnpUrl', vnpUrl);
 
